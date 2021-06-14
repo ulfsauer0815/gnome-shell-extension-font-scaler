@@ -24,10 +24,10 @@ const St = imports.gi.St
 const Gtk = imports.gi.Gtk
 const Main = imports.ui.main
 const PanelMenu = imports.ui.panelMenu
+const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 const KEY = 'text-scaling-factor'
 const NAME = 'Font Scaler'
-const ICON = 'icon'
 
 let settings
 let instance
@@ -39,7 +39,7 @@ const FontScaler = new Lang.Class({
     this.parent(null, NAME)
     this.settings = new Gio.Settings({ schema_id: 'org.gnome.desktop.interface' })
     this._icon = new St.Icon({
-      icon_name: ICON,
+      gicon : Gio.icon_new_for_string( Me.dir.get_path() + '/icon.svg' ),
       style_class: 'system-status-icon'
     })
     this.actor.add_actor(this._icon)
